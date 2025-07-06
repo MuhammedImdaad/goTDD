@@ -4,6 +4,7 @@ import "testing"
 
 func TestWallet(t *testing.T) {
 
+	// ~lambda function
 	assertBalance := func(t testing.TB, wallet Wallet, want Bitcoin) {
 		t.Helper()
 		got := wallet.Balance()
