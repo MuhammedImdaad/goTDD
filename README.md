@@ -1,5 +1,9 @@
 # goTDD
 
+[A Tour of Go](https://go.dev/tour/list)
+
+[Learn Go with Tests](https://quii.gitbook.io/learn-go-with-tests)
+
 * In Go, a name is exported if it begins with a capital letter. 
 * A function can return any number of results.
 * Inside a function, the := short assignment statement can be used in place of a `var` declaration with implicit type.
