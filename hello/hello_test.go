@@ -7,7 +7,7 @@ test files needs to be in a file with a name like xxx_test.go
 the test function must start with the word Test
 */
 
-func TestHello(t *testing.T) { // go run test
+func TestHello(t *testing.T) { // go run test -v
 	t.Run("saying hello to people", func(t *testing.T) { // subtests
 		got := Hello("imd", "")
 		var want string = "Hello, imd"
