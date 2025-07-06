@@ -22,6 +22,9 @@ func Perimeter(r Rectangle) float64 {
 }
 
 // A method is a function with a receiver
+// when you call a function or a method the arguments are copied. 
+// When calling func (r Rectangle) Area(), the r is a copy of the rectangle
+// we called the method from.
 
 func (r Rectangle) Area() float64 {
 	return r.Width * r.Height
