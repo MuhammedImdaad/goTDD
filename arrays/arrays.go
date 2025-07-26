@@ -1,30 +1,32 @@
 package arrays
 
-func Sum(numbers []int) int { // accepts a slice
-	var result int
-	for _, v := range numbers { // ignore the index value by using _
-		result += v
+// a generic reduce funtion with a collection and a reducer
+func Reduce[T any](collection []T, f func(T, T) T, initialValue T) T {
+	var result T = initialValue
+	for _, v := range collection {
+		result = f(result, v)
 	}
 
 	return result
 }
 
-// variadic functions that can take a variable number of arguments
+func Sum(numbers []int) int { // accepts a slice
+
+	// Version II
+	// Define a reducer function that adds two integers
+	f := func(acc, in int) int { return acc + in }
+	// Use the generic Reduce function to sum all elements in the slice
+	return Reduce(numbers, f, 0)
+}
+
+// variadic function that can take a variable number of slices
 func SumAll(nums ...[]int) []int {
-	// len := len(nums)
-	// sums := make([]int, len) //make function; this is how you create dynamically-sized arrays.
-	// //The make function allocates a zeroed array and returns a slice that refers to that array
 
-	// for i, v := range nums {
-	// 	sums[i] = Sum(v)
-	// }
-
-	// return sums
-
-	var sums []int
-	for _, v := range nums {
-		sums = append(sums, Sum(v))
+	// Version II
+	// Define a reducer function that appends the sum of each slice to the accumulator
+	f := func(acc, in []int) []int {
+		return append(acc, Sum(in))
 	}
-
-	return sums
+	// Use the generic Reduce function to process all input slices and collect their sums
+	return Reduce(nums, f, []int{})
 }
