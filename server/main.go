@@ -8,7 +8,7 @@ import (
 // Entry point for the application
 // Starts the HTTP server on port 5000 using PlayerServer
 func main() {
-	server := &PlayerServer{NewInMemoryPlayerStore()}
+	server := NewPlayerServer(NewInMemoryPlayerStore())
 	// Listen on port 5000 and serve requests using PlayerServer
 	log.Fatal(http.ListenAndServe(":5000", server))
 
