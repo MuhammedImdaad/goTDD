@@ -1,4 +1,4 @@
-package main
+package server
 
 // NewInMemoryPlayerStore creates a new in-memory store for player scores
 func NewInMemoryPlayerStore() *InMemoryPlayerStore {

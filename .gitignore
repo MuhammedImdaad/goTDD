@@ -31,4 +31,6 @@ go.work.sum
 # .idea/
 # .vscode/
 
-game.db.json
+server/cmd/webserver/*.json 
+server/cmd/webserver/webserver
+server/cmd/cli/cli
