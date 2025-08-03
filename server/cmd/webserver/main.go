@@ -1,26 +1,22 @@
 package main
 
 import (
+	"github.com/MuhammedImdaad/goTDD/server"
 	"log"
 	"net/http"
-	"os"
-	"github.com/MuhammedImdaad/goTDD/server"
 )
 
 // Entry point for the application
 // Starts the HTTP server on port 5000 using PlayerServer
 func main() {
 	const dbFileName = "game.db.json"
-	db, err := os.OpenFile(dbFileName, os.O_RDWR|os.O_CREATE, 0666)
-	if err != nil {
-		log.Fatalf("problem opening %s %v", dbFileName, err)
-	}
-
-	store, err := server.NewFileSystemPlayerStore(db)
+	store, close, err := server.FileSystemPlayerStoreFromFile(dbFileName)
 
 	if err != nil {
-		log.Fatalf("problem creating file system player store, %v ", err)
+		log.Fatal(err)
 	}
+	defer close()
+
 	server := server.NewPlayerServer(store)
 	// Listen on port 5000 and serve requests using PlayerServer
 	log.Fatal(http.ListenAndServe(":5000", server))
